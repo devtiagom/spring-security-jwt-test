@@ -1,8 +1,13 @@
 package com.acelerajava.authtest.domain;
 
+import com.acelerajava.authtest.domain.enums.UserProfile;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "users")
@@ -18,9 +23,16 @@ public class User implements Serializable {
     private String email;
     private String password;
 
-    public User() {}
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "profiles")
+    private Set<Integer> profiles = new HashSet<>();
+
+    public User() {
+        this.addProfile(UserProfile.USER);
+    }
 
     public User(Long id, String name, String email, String password) {
+        this();
         this.id = id;
         this.name = name;
         this.email = email;
@@ -57,6 +69,14 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<UserProfile> getProfiles() {
+        return this.profiles.stream().map(UserProfile::toEnum).collect(Collectors.toSet());
+    }
+
+    public void addProfile(UserProfile profile) {
+        this.profiles.add(profile.getProfileCode());
     }
 
     @Override

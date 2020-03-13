@@ -2,6 +2,7 @@ package com.acelerajava.authtest.services;
 
 import com.acelerajava.authtest.domain.Course;
 import com.acelerajava.authtest.domain.User;
+import com.acelerajava.authtest.domain.enums.UserProfile;
 import com.acelerajava.authtest.repositories.CourseRepository;
 import com.acelerajava.authtest.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,12 @@ public class DBService {
                 "Beltrana de Tal",
                 "beltrana.tal@gmail.com",
                 passwordEncoder.encode("2345678"));
-        userRepository.saveAll(Arrays.asList(user01, user02, user03));
+        User user04 = new User(null,
+                "Tiago",
+                "tiagol@gmail.com",
+                passwordEncoder.encode("123456"));
+        user04.addProfile(UserProfile.ADMIN);
+        userRepository.saveAll(Arrays.asList(user01, user02, user03, user04));
 
         Course course01 = new Course(null, "Java", 80);
         Course course02 = new Course(null, "React Native", 30);

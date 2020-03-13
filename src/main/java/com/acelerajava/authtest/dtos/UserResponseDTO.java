@@ -1,8 +1,11 @@
 package com.acelerajava.authtest.dtos;
 
 import com.acelerajava.authtest.domain.User;
+import com.acelerajava.authtest.domain.enums.UserProfile;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 public class UserResponseDTO implements Serializable {
 
@@ -11,6 +14,7 @@ public class UserResponseDTO implements Serializable {
         private Long id;
         private String name;
         private String email;
+        private Set<UserProfile> profiles = new HashSet<>();
 
     public UserResponseDTO() {}
 
@@ -18,6 +22,7 @@ public class UserResponseDTO implements Serializable {
             this.id = user.getId();
             this.name = user.getName();
             this.email = user.getEmail();
+            this.profiles = user.getProfiles();
         }
 
     public Long getId() {
@@ -42,5 +47,13 @@ public class UserResponseDTO implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Set<UserProfile> getProfiles() {
+        return profiles;
+    }
+
+    public void setProfiles(Set<UserProfile> profiles) {
+        this.profiles = profiles;
     }
 }
