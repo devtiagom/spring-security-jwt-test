@@ -1,11 +1,8 @@
 package com.acelerajava.authtest.controllers;
 
 import com.acelerajava.authtest.domain.Course;
-import com.acelerajava.authtest.domain.User;
 import com.acelerajava.authtest.dtos.CourseRequestDTO;
 import com.acelerajava.authtest.dtos.CourseResponseDTO;
-import com.acelerajava.authtest.dtos.UserRequestDTO;
-import com.acelerajava.authtest.dtos.UserResponseDTO;
 import com.acelerajava.authtest.services.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
