@@ -38,7 +38,7 @@ public class DBService {
                 passwordEncoder.encode("2345678"));
         User user04 = new User(null,
                 "Tiago",
-                "tiagol@gmail.com",
+                "tiago@gmail.com",
                 passwordEncoder.encode("123456"));
         user04.addProfile(UserProfile.ADMIN);
         userRepository.saveAll(Arrays.asList(user01, user02, user03, user04));
